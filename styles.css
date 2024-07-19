@@ -1,0 +1,189 @@
+* {
+    box-sizing: border-box;
+    --white:#EEEBE5;
+    
+}
+
+body {
+    background-image: url("imgs/The-Office-Michael-Scotts-Background-for-Zoom-Teams-Meet-720.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0; 
+    /* margin: 0 will get rid of the scrollbar that appears */
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    
+}
+
+.container {
+    
+    display: flex;
+    flex-direction: row;
+   
+
+    position: relative;
+    background-color:  var(--white);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    width: 700px;
+    max-width: 90%;
+    
+}
+
+.timer {
+    position: absolute;
+    top: 2rem;
+    font-size: 4rem;
+    color: var(--white);
+   
+}
+@keyframes flashingCaret {
+    50% {
+      opacity: 0;
+    }
+}
+
+.word {
+    /* flex-direction: row; */
+    margin: 0.15em;
+    /* padding: 40px; */
+    /* width: 120px; */
+    /* display: inline-block; */
+}
+
+#caret {
+    /* background-color: #3c5992; */
+    background-color: #5278c3;
+    opacity: 70%;
+    height: 25px;
+    width: 0.7em;
+    border-radius: 2px;
+    animation: flashingCaret 1.3s linear infinite;
+    /* display: block; */
+    /* top: 58px; */
+    z-index: 2;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    /* left: calc(2rem + 2px); */
+    /* transform-origin: top left; */
+    
+    /* right: 250px; */
+
+    /* MOST RECENT CHANGES */
+    /* margin: 0;
+    /* padding: 0; */ 
+    /* transition: left 0.1s ease-in-out;  */ /*Latest remove—idk why i even added it*/
+
+}
+
+
+.quote-input {
+    position: absolute;
+    margin: 0 auto;
+    display: block;
+    padding: 0;
+    resize: none;
+    border: 2px solid black;
+    opacity: 30%;
+    cursor: default;
+    z-index: -1;
+    font-size: 1rem;
+    pointer-events: none;
+    opacity: 0;
+    font-family: "Courier Prime";
+    background-color: transparent;
+    /* border: 2px solid #afaca6; */
+    outline: none;
+    width: 150px;
+    height: 2rem;
+    border-radius: 0.5rem;
+}
+
+.quote-input:focus {
+    border-color: #000000;
+}
+
+.quote-display {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    margin-left: calc(1rem + 2px);
+    /* the 1rem is the padding in .quote-input
+    and we also want to add the border also from .quote-input*/
+    margin-right: calc(1rem + 2px);
+    font-size: 1.3rem;
+}
+
+.correct {
+    color: rgb(61, 138, 61);
+}
+
+.incorrect {
+    color: rgb(197, 70, 70);
+    text-decoration: underline;
+}
+
+
+
+
+
+/* FONT CODE */
+.courier-prime-regular {
+    font-family: "Courier Prime", monospace;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.courier-prime-bold {
+    font-family: "Courier Prime", monospace;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.courier-prime-regular-italic {
+    font-family: "Courier Prime", monospace;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.courier-prime-bold-italic {
+    font-family: "Courier Prime", monospace;
+    font-weight: 700;
+    font-style: italic;
+}
+
+
+.roboto-regular {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.roboto-medium {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.roboto-bold {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.roboto-black {
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+}
