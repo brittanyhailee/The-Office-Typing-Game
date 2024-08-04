@@ -12,6 +12,7 @@ body {
     background-size: cover;
 
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
@@ -38,13 +39,6 @@ body {
     
 }
 
-.timer {
-    position: absolute;
-    top: 2rem;
-    font-size: 4rem;
-    color: var(--white);
-   
-}
 @keyframes flashingCaret {
     50% {
       opacity: 0;
@@ -84,7 +78,6 @@ body {
     /* transition: left 0.1s ease-in-out;  */ /*Latest remove—idk why i even added it*/
 
 }
-
 
 .quote-input {
     position: absolute;
@@ -134,8 +127,50 @@ body {
     text-decoration: underline;
 }
 
+.dashboard {
+    display: flex;
+    background-color: black;
+    border-radius: 15px;
+    /* background-position: center; */
+    /* background-color: black; */
+    flex-direction: row;
+    height: 100px;
+    width: 70vw;
+    border: 1px solid white;
+    margin-bottom:30px;
+    color: var(--white);
+    font-size: 2.3rem;
+
+}
+
+.dashboard > * {
+    padding: 25px 25px 25px 20px;
+}
+
+#office-logo {
+    /* position:relative; */
+    height: 100px;
+    /* right: 0; */
+    width: 100px;
+    margin: 0;
+    padding: 0;
+    float: right;
+    margin-left: auto;
+
+    /* margin-left: 650px; */
+}
 
 
+#office-logo img {
+    height: 100px;
+    margin: 0;
+    padding: 0;
+}
+
+.timer .average-wpm {
+    margin-top: 60px;
+    width: 140px;
+}
 
 
 /* FONT CODE */

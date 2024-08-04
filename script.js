@@ -178,12 +178,12 @@ function moveCaret() {
 /* Compare start date and current date to get the ACTUAL time that has elapsed */
 
 function startTimer() {
-    timerEl.innerText = 0
+    timerEl.innerText = 0 + ' s'
     startTime = new Date()
     // setInterval takes a function and takes a second parameter which specifies
     // how often you want to run that function
     setInterval(() => {
-        timerEl.innerText = getTimerTime()
+        timerEl.innerText = getTimerTime() + ' s'
     }, 1000) // every 1000th millisecond, we will run this function
     //but this function is not exact, it might run every 1001 millisecond
 }
