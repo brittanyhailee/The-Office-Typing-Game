@@ -3,9 +3,10 @@ const RANDOM_OFFICE_QUOTE_API_URL = 'https://officeapi.akashrajpurohit.com/quote
 const quoteDisplayEl = document.getElementById('quoteDisplay')
 const quoteInputEl = document.getElementById('quoteInput')
 const timerEl = document.getElementById('timer')
-
+const averageWpmEl = document.getElementById('average-wpm')
 
 const caretEl = document.getElementById('caret')
+// const correctCount = 0
 
 let userPos; //the index of where the user is currently typing 
 
@@ -34,8 +35,10 @@ quoteInputEl.addEventListener('input', () => {
         
         moveCaret();
 
-        caretEl.style.left = arrayValue[index].offsetLeft;
-        caretEl.style.top = arrayValue[index].offsetTop;
+        caretEl.style.left = arrayValue.indexOf(index).offsetLeft;
+        caretEl.style.top = arrayValue.indexOf(index).offsetTop;
+        // changed from caretEl.style.top = arrayValue[index].offsetTop;
+
 
         const character = arrayValue[index]
         if (character == null) {
@@ -46,7 +49,9 @@ quoteInputEl.addEventListener('input', () => {
         } else if (character == characterSpan.innerText) {
             characterSpan.classList.add('correct')
             characterSpan.classList.remove('incorrect')
+
             correct = true
+            
         } else {
 
             characterSpan.classList.remove('correct')
@@ -143,6 +148,15 @@ async function renderNewQuote() {
     startTimer()
 }
 
+function updateUI() {
+    averageWpmEl.innerText = `${wpmNet()} s`
+}
+
+function wpmNet() {
+    var wpm = Math.round(correctCount/5) / (getTimerTime()/60) 
+    console.log(wpm)
+    return wpm
+}
 
 function moveCaret() {
     caretEl.style.display = "block";
