@@ -33,9 +33,11 @@ quoteInputEl.addEventListener('input', () => {
     arrayQuote.forEach((characterSpan, index) => {
         
         moveCaret();
-
-        caretEl.style.left = arrayValue[index].offsetLeft;
-        caretEl.style.top = arrayValue[index].offsetTop;
+        
+        caretEl.style.left = arrayValue.indexOf(index).offsetLeft;
+        caretEl.style.top = arrayValue.indexOf(index).offsetTop;
+        // caretEl.style.left = arrayValue[index].offsetLeft;
+        // caretEl.style.top = arrayValue[index].offsetTop;
 
         const character = arrayValue[index]
         if (character == null) {
