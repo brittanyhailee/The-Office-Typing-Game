@@ -6,7 +6,7 @@ const timerEl = document.getElementById('timer')
 const averageWpmEl = document.getElementById('average-wpm')
 
 const caretEl = document.getElementById('caret')
-// const correctCount = 0
+var correctCount = 0
 
 let userPos; //the index of where the user is currently typing 
 
@@ -17,7 +17,7 @@ let bottomVal = 0;
 
 quoteInputEl.addEventListener('input', () => {
 
-
+    updateUI()
     const typedWords = quoteInputEl.value.split('');
    
     /* We want to compare each individual input to the characters in the span 
@@ -49,7 +49,7 @@ quoteInputEl.addEventListener('input', () => {
         } else if (character == characterSpan.innerText) {
             characterSpan.classList.add('correct')
             characterSpan.classList.remove('incorrect')
-
+            correctCount++
             correct = true
             
         } else {
@@ -62,7 +62,9 @@ quoteInputEl.addEventListener('input', () => {
     })
     // userPos = typedWords.length;
     if (correct) {
+         
         renderNewQuote()
+        averageWpmEl.innerText = 0
         caretEl.style.display = none;
     } 
 })  
@@ -114,7 +116,6 @@ async function renderNewQuote() {
             wordContainer = document.createElement('div')
             wordContainer.classList.add('word')
             // quoteDisplayEl.appendChild(wordContainer)
-            
             
         }
       
@@ -172,7 +173,9 @@ function moveCaret() {
     
     for (let i = 0; i < userPos; i++) {
         cumulativeWidth = arrayQuote[i].offsetLeft; // Use offsetWidth to get the width of the character span
-        topVal = arrayQuote[i].offsetTop;
+        // arrayValue.indexOf(index).offsetLeft
+        topVal = arrayQuote[i].offsetTop
+        // topVal = arrayQuote[i].offsetTop;
    
         // console.log(arrayQuote[i].offsetLeft);
         
