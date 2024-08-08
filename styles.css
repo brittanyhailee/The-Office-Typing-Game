@@ -45,13 +45,6 @@ body {
     }
 }
 
-.word {
-    /* flex-direction: row; */
-    margin: 0.15em;
-    /* padding: 40px; */
-    /* width: 120px; */
-    /* display: inline-block; */
-}
 
 #caret {
     /* background-color: #3c5992; */
@@ -127,6 +120,12 @@ body {
     text-decoration: underline;
 }
 
+.word {
+    font-size: 23px;
+    font-family: "Roboto Mono", monospace;
+    margin: 0.15em;
+}
+
 .dashboard {
     display: flex;
     background-color: black;
@@ -134,7 +133,7 @@ body {
     /* background-position: center; */
     /* background-color: black; */
     flex-direction: row;
-    height: 100px;
+    height: 80px;
     width: 70vw;
     border: 1px solid white;
     margin-bottom:30px;
@@ -144,27 +143,37 @@ body {
 }
 
 .dashboard > * {
-    padding: 25px 25px 25px 20px;
+    padding: 25px 25px 25px 25px;
+    font-size: 30px;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    /* padding: ; */
 }
 
 #office-logo {
     /* position:relative; */
-    height: 100px;
+    /* height: 90px; */
     /* right: 0; */
-    width: 100px;
+    /* width: 100px; */
+    /* display: flex;
+    flex-direction: row; */
     margin: 0;
     padding: 0;
     float: right;
     margin-left: auto;
+    justify-content: center;
+    align-content: center;
 
     /* margin-left: 650px; */
 }
 
 
 #office-logo img {
-    height: 100px;
-    margin: 0;
+    height: 70px;
+    margin: auto;
     padding: 0;
+    margin-top: 5px;
 }
 
 .timer .average-wpm {
@@ -221,4 +230,11 @@ body {
     font-family: "Roboto", sans-serif;
     font-weight: 900;
     font-style: normal;
+}
+
+.roboto-mono {
+  font-family: "Roboto Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
