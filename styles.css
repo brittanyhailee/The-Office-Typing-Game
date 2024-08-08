@@ -54,6 +54,7 @@ body {
 .word {
     /* flex-direction: row; */
     margin: 0.15em;
+    font-family: "Roboto Mono", monospace;
     /* padding: 40px; */
     /* width: 120px; */
     /* display: inline-block; */
@@ -187,3 +188,12 @@ body {
     font-weight: 900;
     font-style: normal;
 }
+
+.roboto-mono {
+    font-family: "Roboto Mono", monospace;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  
