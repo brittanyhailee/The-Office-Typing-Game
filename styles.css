@@ -134,7 +134,7 @@ body {
     /* background-color: black; */
     flex-direction: row;
     height: 80px;
-    width: 70vw;
+    width: 700px;
     border: 1px solid white;
     margin-bottom:30px;
     color: var(--white);

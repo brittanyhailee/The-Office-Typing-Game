@@ -15,9 +15,9 @@ let leftVal = 0;
 let topVal = 19;
 let bottomVal = 0;
 
+
 quoteInputEl.addEventListener('input', () => {
 
-    updateUI()
     const typedWords = quoteInputEl.value.split('');
    
     /* We want to compare each individual input to the characters in the span 
@@ -28,12 +28,20 @@ quoteInputEl.addEventListener('input', () => {
     
     let correct = true
     userPos = typedWords.length;
-    console.log(userPos);
- 
+    // console.log(userPos);
+    const lastTyped = typedWords[typedWords.length -1]
+    console.log(lastTyped + " == "  + arrayQuote[typedWords.length-1].innerText)
+
+    if (lastTyped  == arrayQuote[typedWords.length-1].innerText) {
+        correctCount++
+        console.log("correctCount:" + correctCount)
+    }
+
+
     moveCaret();
     arrayQuote.forEach((characterSpan, index) => {
         
-        moveCaret();
+        moveCaret()
 
         caretEl.style.left = arrayValue.indexOf(index).offsetLeft;
         caretEl.style.top = arrayValue.indexOf(index).offsetTop;
@@ -49,7 +57,7 @@ quoteInputEl.addEventListener('input', () => {
         } else if (character == characterSpan.innerText) {
             characterSpan.classList.add('correct')
             characterSpan.classList.remove('incorrect')
-            correctCount++
+            
             correct = true
             
         } else {
@@ -145,18 +153,37 @@ async function renderNewQuote() {
         quoteDisplayEl.appendChild(wordContainer)
     })
     quoteInputEl.value = null;
-    moveCaret();
+    moveCaret()
     startTimer()
-}
+    updateUI()
+}   refreshValues()
 
 function updateUI() {
-    averageWpmEl.innerText = `${wpmNet()} s`
+    averageWpmEl.innerText = 0 + ' wpm'
+    setInterval(() => {
+        averageWpmEl.innerText = `${wpmNet()} wpm`
+    }, 1500) 
+    
 }
 
 function wpmNet() {
-    var wpm = Math.round(correctCount/5) / (getTimerTime()/60) 
-    console.log(wpm)
+    wpm = 0
+    // console.log("the timer is " + getTimerTime()) 
+    // console.log("wpm is " + Math.round((correctCount/5) / (getTimerTime()/60)))
+
+    if (getTimerTime() <= 0.5 ) return 0;
+  
+    var  wpm = Math.round((correctCount/5) / (getTimerTime()/60))
+        // peak = (wpm > peak) ? wpm: peak
+        // return wpm
+    
     return wpm
+    // return wpm = Math.round((correctCount/5) / (getTimerTime()/60))
+  
+}
+
+function refreshValues() {
+    correctCount = 0
 }
 
 function moveCaret() {
@@ -210,3 +237,4 @@ function getTimerTime() {
 }
 
 renderNewQuote()
+
