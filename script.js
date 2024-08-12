@@ -156,7 +156,8 @@ async function renderNewQuote() {
     moveCaret()
     startTimer()
     updateUI()
-}   refreshValues()
+    refreshValues()
+}   
 
 function updateUI() {
     averageWpmEl.innerText = 0 + ' wpm'
