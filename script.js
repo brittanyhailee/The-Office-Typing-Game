@@ -4,6 +4,7 @@ const quoteDisplayEl = document.getElementById('quoteDisplay')
 const quoteInputEl = document.getElementById('quoteInput')
 const timerEl = document.getElementById('timer')
 const averageWpmEl = document.getElementById('average-wpm')
+const cpmEl = document.getElementById('cpm')
 
 const caretEl = document.getElementById('caret')
 var correctCount = 0
@@ -14,7 +15,7 @@ let correct = true;
 let leftVal = 0;
 let topVal = 19;
 let bottomVal = 0;
-
+var charSumNet = 0
 
 quoteInputEl.addEventListener('input', () => {
 
@@ -35,6 +36,9 @@ quoteInputEl.addEventListener('input', () => {
     if (lastTyped  == arrayQuote[typedWords.length-1].innerText) {
         correctCount++
         console.log("correctCount:" + correctCount)
+        charSumNet++
+    } else {
+        charSumNet++
     }
 
 
@@ -57,7 +61,6 @@ quoteInputEl.addEventListener('input', () => {
         } else if (character == characterSpan.innerText) {
             characterSpan.classList.add('correct')
             characterSpan.classList.remove('incorrect')
-            
             correct = true
             
         } else {
@@ -161,8 +164,10 @@ async function renderNewQuote() {
 
 function updateUI() {
     averageWpmEl.innerText = 0 + ' wpm'
+    cpmEl.innerText = 0 + ' cpm'
     setInterval(() => {
         averageWpmEl.innerText = `${wpmNet()} wpm`
+        cpmEl.innerText = `${cpmNet()} cpm`
     }, 1500) 
     
 }
@@ -172,7 +177,7 @@ function wpmNet() {
     // console.log("the timer is " + getTimerTime()) 
     // console.log("wpm is " + Math.round((correctCount/5) / (getTimerTime()/60)))
 
-    if (getTimerTime() <= 0.5 ) return 0;
+    if (getTimerTime() <= 0.3 ) return 0;
   
     var  wpm = Math.round((correctCount/5) / (getTimerTime()/60))
         // peak = (wpm > peak) ? wpm: peak
@@ -180,11 +185,16 @@ function wpmNet() {
     
     return wpm
     // return wpm = Math.round((correctCount/5) / (getTimerTime()/60))
-  
+}
+
+function cpmNet() {
+    if (getTimerTime() < 0.3) return 0;
+    return Math.round((charSumNet)/(getTimerTime()/60))
 }
 
 function refreshValues() {
     correctCount = 0
+    charSumNet = 0
 }
 
 function moveCaret() {
