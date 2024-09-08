@@ -3,19 +3,22 @@ const RANDOM_OFFICE_QUOTE_API_URL = 'https://officeapi.akashrajpurohit.com/quote
 const quoteDisplayEl = document.getElementById('quoteDisplay')
 const quoteInputEl = document.getElementById('quoteInput')
 const timerEl = document.getElementById('timer')
-
+const averageWpmEl = document.getElementById('average-wpm')
+const cpmEl = document.getElementById('cpm')
 
 const caretEl = document.getElementById('caret')
+var correctCount = 0
 
 let userPos; //the index of where the user is currently typing 
 
 let correct = true;
 let leftVal = 0;
-let topVal = 19;
+let topVal = 70;
+// let topVal = 30;
 let bottomVal = 0;
+var charSumNet = 0
 
 quoteInputEl.addEventListener('input', () => {
-
 
     const typedWords = quoteInputEl.value.split('');
    
@@ -27,17 +30,29 @@ quoteInputEl.addEventListener('input', () => {
     
     let correct = true
     userPos = typedWords.length;
-    console.log(userPos);
- 
-    moveCaret();
+    // console.log(userPos);
+    const lastTyped = typedWords[typedWords.length -1]
+    console.log(lastTyped + " == "  + arrayQuote[typedWords.length-1].innerText)
+
+    if (lastTyped  == arrayQuote[typedWords.length-1].innerText) {
+        correctCount++
+        console.log("correctCount:" + correctCount)
+        charSumNet++
+    } else {
+        charSumNet++
+    }
+
+
+    // moveCaret()
     arrayQuote.forEach((characterSpan, index) => {
         
-        moveCaret();
-        
+
+        moveCaret()
+
         caretEl.style.left = arrayValue.indexOf(index).offsetLeft;
         caretEl.style.top = arrayValue.indexOf(index).offsetTop;
-        // caretEl.style.left = arrayValue[index].offsetLeft;
-        // caretEl.style.top = arrayValue[index].offsetTop;
+        // changed from caretEl.style.top = arrayValue[index].offsetTop;
+
 
         const character = arrayValue[index]
         if (character == null) {
@@ -49,6 +64,7 @@ quoteInputEl.addEventListener('input', () => {
             characterSpan.classList.add('correct')
             characterSpan.classList.remove('incorrect')
             correct = true
+            
         } else {
 
             characterSpan.classList.remove('correct')
@@ -59,7 +75,9 @@ quoteInputEl.addEventListener('input', () => {
     })
     // userPos = typedWords.length;
     if (correct) {
+         
         renderNewQuote()
+        averageWpmEl.innerText = 0
         caretEl.style.display = none;
     } 
 })  
@@ -72,11 +90,15 @@ function getRandomQuote() {
 
 async function renderNewQuote() {
 
-    const quote = await getRandomQuote();
+    let quote = await getRandomQuote();
+    if (quote.length > 200) {
+        quote = await getRandomQuote();
+    }
 
     // Reset userPos to 0 when rendering a new quote
     userPos = 0;
-    topVal = 19;
+    topVal = 70
+
 
     quoteDisplayEl.innerHTML = ''
 
@@ -89,8 +111,11 @@ async function renderNewQuote() {
     // console.log(quote[0]);
 
     let wordContainer = null; 
+    caretEl.style.top = quote[0].offsetTop
     
     quote.split('').forEach(character => {
+        
+        // console.log("topVal is ", topVal)
         // const firstLetter = quote[0]
         // moveCaret(firstLetter.top, firstLetter.left)
 
@@ -111,7 +136,6 @@ async function renderNewQuote() {
             wordContainer = document.createElement('div')
             wordContainer.classList.add('word')
             // quoteDisplayEl.appendChild(wordContainer)
-            
             
         }
       
@@ -141,14 +165,51 @@ async function renderNewQuote() {
         quoteDisplayEl.appendChild(wordContainer)
     })
     quoteInputEl.value = null;
-    moveCaret();
+    moveCaret()
     startTimer()
+    updateUI()
+    refreshValues()
+}   
+
+function updateUI() {
+    averageWpmEl.innerText = 0 + ' wpm'
+    cpmEl.innerText = 0 + ' cpm'
+    setInterval(() => {
+        averageWpmEl.innerText = `${wpmNet()} wpm`
+        cpmEl.innerText = `${cpmNet()} cpm`
+    }, 1500) 
+    
 }
 
+function wpmNet() {
+    wpm = 0
+    // console.log("the timer is " + getTimerTime()) 
+    // console.log("wpm is " + Math.round((correctCount/5) / (getTimerTime()/60)))
+
+    if (getTimerTime() <= 0.3 ) return 0;
+  
+    var  wpm = Math.round((correctCount/5) / (getTimerTime()/60))
+        // peak = (wpm > peak) ? wpm: peak
+        // return wpm
+    
+    return wpm
+    // return wpm = Math.round((correctCount/5) / (getTimerTime()/60))
+}
+
+function cpmNet() {
+    if (getTimerTime() < 0.3) return 0;
+    return Math.round((charSumNet)/(getTimerTime()/60))
+}
+
+function refreshValues() {
+    correctCount = 0
+    charSumNet = 0
+}
 
 function moveCaret() {
     caretEl.style.display = "block";
-    let extraSpace = 5;
+    let extraSpace = 4;
+    //extraSpace was originally 5
     if (userPos === 0) {
         extraSpace = 1;
     }
@@ -160,7 +221,9 @@ function moveCaret() {
     
     for (let i = 0; i < userPos; i++) {
         cumulativeWidth = arrayQuote[i].offsetLeft; // Use offsetWidth to get the width of the character span
-        topVal = arrayQuote[i].offsetTop;
+        // arrayValue.indexOf(index).offsetLeft
+        topVal = arrayQuote[i].offsetTop
+        // topVal = arrayQuote[i].offsetTop;
    
         // console.log(arrayQuote[i].offsetLeft);
         
@@ -180,12 +243,12 @@ function moveCaret() {
 /* Compare start date and current date to get the ACTUAL time that has elapsed */
 
 function startTimer() {
-    timerEl.innerText = 0
+    timerEl.innerText = 0 + ' s'
     startTime = new Date()
     // setInterval takes a function and takes a second parameter which specifies
     // how often you want to run that function
     setInterval(() => {
-        timerEl.innerText = getTimerTime()
+        timerEl.innerText = getTimerTime() + ' s'
     }, 1000) // every 1000th millisecond, we will run this function
     //but this function is not exact, it might run every 1001 millisecond
 }
@@ -195,3 +258,4 @@ function getTimerTime() {
 }
 
 renderNewQuote()
+
