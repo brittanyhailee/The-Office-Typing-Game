@@ -13,7 +13,8 @@ let userPos; //the index of where the user is currently typing
 
 let correct = true;
 let leftVal = 0;
-let topVal = 19;
+let topVal = 60;
+// let topVal = 30;
 let bottomVal = 0;
 var charSumNet = 0
 
@@ -42,7 +43,7 @@ quoteInputEl.addEventListener('input', () => {
     }
 
 
-    moveCaret();
+    // moveCaret()
     arrayQuote.forEach((characterSpan, index) => {
         
         moveCaret()
@@ -92,7 +93,9 @@ async function renderNewQuote() {
 
     // Reset userPos to 0 when rendering a new quote
     userPos = 0;
-    topVal = 19;
+    topVal = 60
+
+    
 
     quoteDisplayEl.innerHTML = ''
 
@@ -105,8 +108,11 @@ async function renderNewQuote() {
     // console.log(quote[0]);
 
     let wordContainer = null; 
+    caretEl.style.top = quote[0].offsetTop
     
     quote.split('').forEach(character => {
+        
+        // console.log("topVal is ", topVal)
         // const firstLetter = quote[0]
         // moveCaret(firstLetter.top, firstLetter.left)
 

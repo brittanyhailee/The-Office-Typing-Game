@@ -42,13 +42,12 @@ body {
 }
 
 .container {
-    display: flex;
+    display: block;
     flex-direction: row;
     position: relative;
     background-color:  var(--white);
     /* opacity: 0.1; */
-    padding: 1rem;
-    border-radius: 0.5rem;
+    /* padding: 1rem; */
     margin: 0;
     width: 500px;
     align-self: center;
@@ -57,17 +56,23 @@ body {
     margin-bottom: 70px;
 }
 
-.container::before {
-    background-color:  var(--white);
-    opacity: 50%;
+#tab-header {
+    background-color: #245DDA;
+    background-color: #233cca;
+    height: 25px;
+    width: 100%;
+    color: var(--white);
+    font-family: "Pixeloid Sans", "Roboto Mono";
+    padding: 4px 0px 7px 7px;
+    font-size: 13px;
 }
+
 
 @keyframes flashingCaret {
     50% {
       opacity: 0;
     }
 }
-
 
 #caret {
     background-color: #5278c3;
@@ -125,6 +130,7 @@ body {
     and we also want to add the border also from .quote-input*/
     margin-right: calc(1rem + 2px);
     font-size: 1.3rem;
+    padding: 0.5rem;
 }
 
 .correct {
@@ -199,6 +205,10 @@ body {
 
 
 /* FONT CODE */
+@font-face {
+    font-family: "Pixeloid Sans";
+    src: url('fonts/PixeloidSans-mLxMm.ttf');
+}
 .courier-prime-regular {
     font-family: "Courier Prime", monospace;
     font-weight: 400;
@@ -254,3 +264,16 @@ body {
   font-weight: 400;
   font-style: normal;
 }
+
+.silkscreen-regular {
+    font-family: "Silkscreen", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .silkscreen-bold {
+    font-family: "Silkscreen", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
