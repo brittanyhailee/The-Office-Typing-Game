@@ -76,6 +76,18 @@ body {
     }
 }
 
+
+.word {
+    /* flex-direction: row; */
+    font-size: 23px;
+    margin: 0.15em;
+    font-family: "Roboto Mono", monospace;
+    /* padding: 40px; */
+    /* width: 120px; */
+    /* display: inline-block; */
+}
+
+
 #caret {
     background-color: #5278c3;
     opacity: 70%;
@@ -280,6 +292,7 @@ body {
 }
 
 .roboto-mono {
+
   font-family: "Roboto Mono", monospace;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -297,4 +310,5 @@ body {
     font-weight: 700;
     font-style: normal;
   }
+
   

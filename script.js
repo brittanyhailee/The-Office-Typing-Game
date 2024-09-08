@@ -46,6 +46,7 @@ quoteInputEl.addEventListener('input', () => {
     // moveCaret()
     arrayQuote.forEach((characterSpan, index) => {
         
+
         moveCaret()
 
         caretEl.style.left = arrayValue.indexOf(index).offsetLeft;
