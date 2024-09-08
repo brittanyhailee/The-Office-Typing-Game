@@ -13,7 +13,7 @@ let userPos; //the index of where the user is currently typing
 
 let correct = true;
 let leftVal = 0;
-let topVal = 60;
+let topVal = 70;
 // let topVal = 30;
 let bottomVal = 0;
 var charSumNet = 0
@@ -89,13 +89,15 @@ function getRandomQuote() {
 
 async function renderNewQuote() {
 
-    const quote = await getRandomQuote();
+    let quote = await getRandomQuote();
+    if (quote.length > 200) {
+        quote = await getRandomQuote();
+    }
 
     // Reset userPos to 0 when rendering a new quote
     userPos = 0;
-    topVal = 60
+    topVal = 70
 
-    
 
     quoteDisplayEl.innerHTML = ''
 
@@ -205,7 +207,8 @@ function refreshValues() {
 
 function moveCaret() {
     caretEl.style.display = "block";
-    let extraSpace = 5;
+    let extraSpace = 4;
+    //extraSpace was originally 5
     if (userPos === 0) {
         extraSpace = 1;
     }
