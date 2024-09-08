@@ -186,7 +186,7 @@ function wpmNet() {
     // console.log("the timer is " + getTimerTime()) 
     // console.log("wpm is " + Math.round((correctCount/5) / (getTimerTime()/60)))
 
-    if (getTimerTime() <= 0.3 ) return 0;
+    if (getTimerTime() <= 0.1 ) return 0;
   
     var  wpm = Math.round((correctCount/5) / (getTimerTime()/60))
         // peak = (wpm > peak) ? wpm: peak
@@ -197,7 +197,7 @@ function wpmNet() {
 }
 
 function cpmNet() {
-    if (getTimerTime() < 0.3) return 0;
+    if (getTimerTime() < 0.1) return 0;
     return Math.round((charSumNet)/(getTimerTime()/60))
 }
 
