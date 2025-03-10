@@ -5,6 +5,6 @@
 
 
 
-## Before you go remember...
+## Before you go, remember...
 <p align="center"> "A blank sheet of paper equals endless possibilities." - Michael Scott.</p>
 
