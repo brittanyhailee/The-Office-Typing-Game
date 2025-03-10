@@ -1,4 +1,5 @@
-const RANDOM_OFFICE_QUOTE_API_URL = 'https://officeapi.akashrajpurohit.com/quote/random'
+// const RANDOM_OFFICE_QUOTE_API_URL = 'https://officeapi.akashrajpurohit.com/quote/random'
+const RANDOM_OFFICE_QUOTE_API_URL = 'http://api.quotable.io/random'
 
 const quoteDisplayEl = document.getElementById('quoteDisplay')
 const quoteInputEl = document.getElementById('quoteInput')
@@ -85,15 +86,16 @@ quoteInputEl.addEventListener('input', () => {
 function getRandomQuote() {
     return fetch(RANDOM_OFFICE_QUOTE_API_URL)
         .then(response => response.json())
-        .then(data => data.quote) // change to .quote when doing 'the office' api
+        // .then(data => data.quote) // change to .quote when doing 'the office' api
+        .then(data => data.content)
 }
 
 async function renderNewQuote() {
 
     let quote = await getRandomQuote();
-    if (quote.length > 200) {
-        quote = await getRandomQuote();
-    }
+    // if (quote.length > 200) {
+    //     quote = await getRandomQuote();
+    // }
 
     // Reset userPos to 0 when rendering a new quote
     userPos = 0;
